@@ -1,0 +1,6 @@
+{
+  "appId": "com.roman.superapp",
+  "appName": "My Dream Game",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}
