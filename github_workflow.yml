@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android APK V2
 
 on:
   push:
@@ -19,13 +19,12 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Dependencies
+      - name: Create Android Project
         run: |
           npm install
-          npm install @capacitor/core @capacitor/cli @capacitor/android
-
-      - name: Sync Capacitor
-        run: |
+          npx cap init "MyDreamGame" com.roman.superapp --web-dir .
+          npm install @capacitor/android
+          npx cap add android
           npx cap sync
 
       - name: Setup Java
