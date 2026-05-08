@@ -1,4 +1,4 @@
-name: Build Android APK V2
+name: Final Build APK
 
 on:
   push:
@@ -19,10 +19,18 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Create Android Project
+      - name: Prepare Web Dir
+        run: |
+          mkdir -p www
+          cp index.html www/
+          # Copy other files if they exist
+          cp *.js www/ 2>/dev/null || true
+          cp *.css www/ 2>/dev/null || true
+
+      - name: Create Capacitor Project
         run: |
           npm install
-          npx cap init "MyDreamGame" com.roman.superapp --web-dir .
+          npx cap init "MyDreamGame" com.roman.superapp --web-dir www
           npm install @capacitor/android
           npx cap add android
           npx cap sync
